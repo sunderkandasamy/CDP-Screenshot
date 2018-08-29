@@ -1,0 +1,35 @@
+{
+  "name": "cdpscreenshot",
+  "version": "1.0.0",
+  "description": "Using Chrome Devtool Protocol Websocket to load website and capture screenshot",
+  "main": "index.js",
+  "dependencies": {
+    "chrome-launcher": "*",
+    "fs": "*",
+    "ws": "*",
+    "request-promise": "*",
+    "request": "*",
+    "path": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunderkandasamy/CDP-Screenshot.git"
+  },
+  "keywords": [
+    "Chrome",
+    "Devtool",
+    "Protocol",
+    "CDP",
+    "Screenshot"
+  ],
+  "author": "Sunder Kandasamy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sunderkandasamy/CDP-Screenshot/issues"
+  },
+  "homepage": "https://github.com/sunderkandasamy/CDP-Screenshot#readme"
+}
