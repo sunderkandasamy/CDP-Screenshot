@@ -34,15 +34,21 @@ chromeLauncher.launch().then(chrome => {
 		navigateInit = false;
 		ws.onopen = function () {
 		   console.log('websocket is connected ...');
-		   ws.send('{"id":1,"method":"Page.enable","params":{}}', (err) => {
+		   ws.send('{"id":1,"method":"Network.enable","params":{maxPostDataSize: 65536}}', (err) => {
 		       if (err) {
 		           console.log(err);
 		       }else{      
-		       		ws.send('{"id":2,"method":"Page.navigate","params":{"url": "'+ navigateURL +'"}}', (err) => {
-		               if (err) {
-		                   	console.log(err);
-		               }
-		           });
+		       		ws.send('{"id":2,"method":"Page.enable","params":{}}', (err) => {
+				       if (err) {
+				           console.log(err);
+				       }else{      
+				       		ws.send('{"id":3,"method":"Page.navigate","params":{"url": "'+ navigateURL +'"}}', (err) => {
+				               if (err) {
+				                   	console.log(err);
+				               }
+				           });
+				       }
+				   	});
 		       }
 		   });
 		}
@@ -55,10 +61,10 @@ chromeLauncher.launch().then(chrome => {
 		   if(response.method == "Page.loadEventFired" && navigateInit){
 		   		console.log("captureScreenshotInit");
 		   		navigateInit = false;
-				ws.send('{"id":3,"method":"Page.captureScreenshot","params":{}}', (err) => {
+				ws.send('{"id":4,"method":"Page.captureScreenshot","params":{}}', (err) => {
 				   if (err) {console.log(err);}
 				});
-			}else if(response.id == 3){
+			}else if(response.id == 4){
 		   		const buffer = new Buffer(response.result.data, 'base64');
 		   		ensureDirectoryExistence(screenshotPath);
 		       	fs.writeFile(screenshotPath, buffer, function(err) {
